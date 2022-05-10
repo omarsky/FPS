@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_distanceToPlayerToWalk: 30
   m_distanceToPlayerToRun: 15
-  m_distanceToAttack: 5
+  m_distanceToAttack: 4
 --- !u!114 &1865315724
 MonoBehaviour:
   m_ObjectHideFlags: 0

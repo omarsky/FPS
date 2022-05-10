@@ -15,12 +15,12 @@ GameObject:
   - component: {fileID: 3741387055481277837}
   - component: {fileID: 3741387055481277824}
   - component: {fileID: 3741387055481277831}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 16
   m_IsActive: 1
 --- !u!4 &3741387055481277825
 Transform:
@@ -95,7 +95,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3741387055481277838}
-  m_Material: {fileID: 13400000, guid: 20fd59d540b80534fbe37964c1c6cb7a, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -173,12 +173,36 @@ PrefabInstance:
       value: HealthBarCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 442699074259182477, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 442699074259182477, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 442699074259182477, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2241635238918097847, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2241635238918097847, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782950341672632342, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2782950341672632342, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782950341672632342, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2966813398832446061, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
       propertyPath: m_AnchorMax.x
@@ -187,6 +211,14 @@ PrefabInstance:
     - target: {fileID: 2966813398832446061, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814198791984459203, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814198791984459203, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6259800634262444670, guid: 8d9527dfc57cfbe43a7612bc4b49dd96, type: 3}
       propertyPath: m_Pivot.x
