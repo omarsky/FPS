@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         m_animator = GetComponent<Animator>();
+        GetComponent<HealthComponent>()?.RegisterHealthEvent(OnHealthEnded);
     }
 
     void Update()
@@ -50,6 +51,17 @@ public class EnemyController : MonoBehaviour
     protected void LookAtPlayer(GameObject player)
     {
         transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane((player.transform.position - transform.position), Vector3.up));
+    }
+
+    public void DeactivateEnemy()
+    {
+        GetComponent<HealthComponent>()?.m_healthBar.SetActive(false);
+        enabled = false;
+    }
+
+    protected virtual void OnHealthEnded()
+    {
+        GetComponent<HealthComponent>()?.UnregisterHealthEvent(OnHealthEnded);
     }
 
     protected virtual void UpdateRoaming()
