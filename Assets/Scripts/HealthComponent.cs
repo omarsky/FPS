@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class HealthComponent : MonoBehaviour
 {
+    public delegate void OnHealthEnded();
+    public event OnHealthEnded HealthEndedNotificationEvent;
+
     [SerializeField]
     float m_maxHealth = 100f;
     float m_health;
 
-    [SerializeField]
-    GameObject m_healthBar;
+    public GameObject m_healthBar;
     Slider m_healthBarSlider;
     
     [SerializeField]
@@ -40,12 +42,9 @@ public class HealthComponent : MonoBehaviour
         m_health -= damageAmount;
         m_healthBarSlider.value = m_health / m_maxHealth;
 
-        Animator animator = GetComponent<Animator>();
-        if (animator && m_health <= 0)
+        if (m_health <= 0)
         {
-            //TODO: Think about a refactoring of this part
-            animator.SetTrigger(AnimationConstants.CubeDestroy);
-            animator.SetTrigger(AnimationConstants.ZombieFallback);
+            HealthEndedNotificationEvent?.Invoke();
         }
 
         Debug.LogFormat("{1}: Received damage: {0}", damageAmount, gameObject.ToString());
@@ -60,14 +59,13 @@ public class HealthComponent : MonoBehaviour
         GameObject.Destroy(this.gameObject);
     }
 
-    public void DeactivateEnemy()
+    public void RegisterHealthEvent(OnHealthEnded ev)
     {
-        m_healthBar.SetActive(false);
-        EnemyController enemyController = GetComponent<EnemyController>();
-        if (enemyController)
-        {
-            enemyController.enabled = false;
-        }
+        HealthEndedNotificationEvent += ev;
+    }
+    public void UnregisterHealthEvent(OnHealthEnded ev)
+    {
+        HealthEndedNotificationEvent -= ev;
     }
 
     private void OnDrawGizmos()

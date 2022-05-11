@@ -32,4 +32,11 @@ public class ZombieController : EnemyController
             m_animator.SetBool(AnimationConstants.ZombieRoaming, isRoaming);
         }
     }
+
+    protected override void OnHealthEnded()
+    {
+        base.OnHealthEnded();
+
+        m_animator.SetTrigger(AnimationConstants.ZombieFallback);
+    }
 }
