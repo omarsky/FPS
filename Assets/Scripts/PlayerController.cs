@@ -19,9 +19,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject m_bulletSpawn;
     [SerializeField]
-    GameObject m_linePrefab; 
+    GameObject m_linePrefab;
 
-    public LayerMask m_objectsAffectedByShotsMask;
+    [SerializeField]
+    LayerMask m_objectsAffectedByShotsMask;
 
     Vector3 m_currentMove;
     Vector3 m_currentRotation;
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
     Vector3 m_currentSpeed;
     bool m_isGrounded;
     [SerializeField]
-    public LayerMask m_groundMask;
+    LayerMask m_groundMask;
 
     void Awake()
     {
@@ -109,14 +110,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             m_linePrefab.GetComponent<LaserShotScript>().UpdateLine(m_bulletSpawn.transform.position, ray.GetPoint(300f));
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(Tags.DamageDealingObject))
-        {
-            GetComponent<HealthComponent>().ReceiveDamage(20f);
         }
     }
 

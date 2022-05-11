@@ -7,12 +7,23 @@ public class EnemyController : MonoBehaviour
 {
     protected Animator m_animator;
 
+    [Header("Animation values")]
     [SerializeField]
     protected float m_distanceToPlayerToWalk;
     [SerializeField]
     protected float m_distanceToPlayerToRun;
     [SerializeField]
     protected float m_distanceToAttack;
+
+    [Header("Attack values")]
+    [SerializeField]
+    Transform m_damageDealingObj;
+    [SerializeField]
+    float m_damageObjectRadius = 0.5f;
+    [SerializeField]
+    float m_damageDeal = 10f;
+    [SerializeField]
+    LayerMask m_objectsThatReceiveDamage;
 
     private void Awake()
     {
@@ -26,10 +37,10 @@ public class EnemyController : MonoBehaviour
         float distanceToPlayer = (player.transform.position - transform.position).magnitude;
 
         bool isAttacking = false;
-        bool isRunning = false; 
+        bool isRunning = false;
         bool isWalking = false;
 
-        if(distanceToPlayer < m_distanceToAttack)
+        if (distanceToPlayer < m_distanceToAttack)
         {
             isAttacking = true;
             LookAtPlayer(player);
@@ -47,7 +58,19 @@ public class EnemyController : MonoBehaviour
 
         UpdateRoaming();
         UpdateAnimatorValues(isAttacking, isRunning, isWalking);
+        UpdateDamageDeal();
     }
+
+    private void UpdateDamageDeal()
+    {
+        RaycastHit hitInfo;
+        if (m_damageDealingObj.gameObject.activeSelf && Physics.SphereCast(m_damageDealingObj.position, m_damageObjectRadius, Vector3.forward, out hitInfo, 0.1f, m_objectsThatReceiveDamage))
+        {
+            hitInfo.collider.gameObject.GetComponent<HealthComponent>().ReceiveDamage(m_damageDeal);
+            m_damageDealingObj.gameObject.SetActive(false);
+        }
+    }
+
     protected void LookAtPlayer(GameObject player)
     {
         transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane((player.transform.position - transform.position), Vector3.up));
@@ -57,6 +80,16 @@ public class EnemyController : MonoBehaviour
     {
         GetComponent<HealthComponent>()?.m_healthBar.SetActive(false);
         enabled = false;
+    }
+
+    public void SetDamageDealingObjActive(int isActive)
+    {
+        m_damageDealingObj.gameObject.SetActive(isActive > 0);
+    }
+
+    public void DisableAnimator()
+    {
+        m_animator.enabled = false;
     }
 
     protected virtual void OnHealthEnded()
@@ -72,5 +105,10 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void UpdateAnimatorValues(bool isAttacking, bool isRunning, bool isWalking)
     {
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(m_damageDealingObj.position, m_damageObjectRadius);
     }
 }
