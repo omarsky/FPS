@@ -79,6 +79,8 @@ public class EnemyController : MonoBehaviour
     public void DeactivateEnemy()
     {
         GetComponent<HealthComponent>()?.m_healthBar.SetActive(false);
+        GetComponent<Collider>().enabled = false;
+        GetComponent<Rigidbody>().useGravity = false;
         enabled = false;
     }
 
