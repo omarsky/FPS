@@ -19,7 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject m_bulletSpawn;
     [SerializeField]
-    GameObject m_linePrefab;
+    GameObject m_linePrefab; //to delete?
+    [SerializeField]
+    GameObject m_throwObjectPrefab; // todo
 
     [SerializeField]
     LayerMask m_objectsAffectedByShotsMask;
@@ -100,17 +102,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack()
     {
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit raycastHit;
-        if (Physics.Raycast(ray, out raycastHit, 300f, m_objectsAffectedByShotsMask))
-        {
-            m_linePrefab.GetComponent<LaserShotScript>().UpdateLine(m_bulletSpawn.transform.position, raycastHit.point);
-            raycastHit.transform.GetComponent<HealthComponent>()?.ReceiveDamage(GameplayConstants.LaserGunDamage);
-        }
-        else
-        {
-            m_linePrefab.GetComponent<LaserShotScript>().UpdateLine(m_bulletSpawn.transform.position, ray.GetPoint(300f));
-        }
+        //Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        //RaycastHit raycastHit;
+        //if (Physics.Raycast(ray, out raycastHit, 300f, m_objectsAffectedByShotsMask))
+        //{
+        //    raycastHit.transform.GetComponent<HealthComponent>()?.ReceiveDamage(GameplayConstants.LaserGunDamage);
+        //}
     }
 
     private void OnDrawGizmosSelected()

@@ -24,18 +24,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shoot",
+                    "name": "SwordSwing",
                     "type": "Button",
                     "id": "a75b654d-2bb0-4936-a013-d6ea23f670a0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Zieg",
-                    "type": "Button",
-                    "id": "431ebc52-477e-4040-9374-864bca659dc9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -116,18 +107,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8b3a6bbe-bea8-4296-b5bd-ba601abc21ce",
-                    "path": "<Keyboard>/z",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Zieg",
+                    "action": "SwordSwing",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

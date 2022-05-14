@@ -9,8 +9,8 @@ public class ArmAnimatorHelper : MonoBehaviour
  
     static public bool m_isActionInProgress = false;
 
-    public float m_cooldown = 2f;
-    float m_currentCooldown = 0;
+    [SerializeField]
+    Collider m_swordCollider;
 
     // Start is called before the first frame update
     void Awake()
@@ -21,23 +21,13 @@ public class ArmAnimatorHelper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_currentCooldown -= Time.deltaTime;
     }
 
-    public void OnAttack(InputAction.CallbackContext value)
-    {
-        if (value.performed && m_currentCooldown <= 0)
-        {
-            m_armAnimator.SetTrigger(AnimationConstants.ShouldShootTrigger);
-            m_isActionInProgress = true;
-            m_currentCooldown = m_cooldown;
-        }
-    }
-    public void OnZieg(InputAction.CallbackContext value)
+    public void OnSwordSliceAttack(InputAction.CallbackContext value) // think about moving it to the playercontroller somehow
     {
         if (value.performed && !m_isActionInProgress)
         {
-            m_armAnimator.SetTrigger(AnimationConstants.ShouldZiegTrigger);
+            m_armAnimator.SetTrigger(AnimationConstants.SwordSliceAttackTrigger);
             m_isActionInProgress = true;
         }
     }
@@ -47,8 +37,13 @@ public class ArmAnimatorHelper : MonoBehaviour
         m_isActionInProgress = false;
     }
 
-    public void Attack()
+    public void OnSwordSliceAttack_Start()
     {
-        GetComponentInParent<PlayerController>().OnAttack();
+        m_swordCollider.enabled = true;
+    }
+
+    public void OnSwordSliceAttack_Stop()
+    {
+        m_swordCollider.enabled = false;
     }
 }
