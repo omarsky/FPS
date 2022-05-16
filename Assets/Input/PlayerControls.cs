@@ -44,15 +44,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""SwordSwing"",
-                    ""type"": ""Button"",
-                    ""id"": ""a75b654d-2bb0-4936-a013-d6ea23f670a0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -121,17 +112,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f1308ee7-d4ec-4ade-a945-8220d37aa649"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SwordSwing"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -142,7 +122,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerControl = asset.FindActionMap("PlayerControl", throwIfNotFound: true);
         m_PlayerControl_WASD = m_PlayerControl.FindAction("WASD", throwIfNotFound: true);
         m_PlayerControl_Rotation = m_PlayerControl.FindAction("Rotation", throwIfNotFound: true);
-        m_PlayerControl_SwordSwing = m_PlayerControl.FindAction("SwordSwing", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,14 +183,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IPlayerControlActions m_PlayerControlActionsCallbackInterface;
     private readonly InputAction m_PlayerControl_WASD;
     private readonly InputAction m_PlayerControl_Rotation;
-    private readonly InputAction m_PlayerControl_SwordSwing;
     public struct PlayerControlActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerControlActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @WASD => m_Wrapper.m_PlayerControl_WASD;
         public InputAction @Rotation => m_Wrapper.m_PlayerControl_Rotation;
-        public InputAction @SwordSwing => m_Wrapper.m_PlayerControl_SwordSwing;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControl; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -227,9 +204,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Rotation.started -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnRotation;
                 @Rotation.performed -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnRotation;
                 @Rotation.canceled -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnRotation;
-                @SwordSwing.started -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnSwordSwing;
-                @SwordSwing.performed -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnSwordSwing;
-                @SwordSwing.canceled -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnSwordSwing;
             }
             m_Wrapper.m_PlayerControlActionsCallbackInterface = instance;
             if (instance != null)
@@ -240,9 +214,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Rotation.started += instance.OnRotation;
                 @Rotation.performed += instance.OnRotation;
                 @Rotation.canceled += instance.OnRotation;
-                @SwordSwing.started += instance.OnSwordSwing;
-                @SwordSwing.performed += instance.OnSwordSwing;
-                @SwordSwing.canceled += instance.OnSwordSwing;
             }
         }
     }
@@ -251,6 +222,5 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnWASD(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);
-        void OnSwordSwing(InputAction.CallbackContext context);
     }
 }

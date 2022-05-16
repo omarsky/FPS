@@ -19,8 +19,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject m_bulletSpawn;
     [SerializeField]
-    GameObject m_linePrefab; //to delete?
-    [SerializeField]
     GameObject m_throwObjectPrefab; // todo
 
     [SerializeField]

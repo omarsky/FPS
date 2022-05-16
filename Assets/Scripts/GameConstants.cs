@@ -6,6 +6,7 @@ public class AnimationConstants
 {
     //Player
     public static readonly int SwordSliceAttackTrigger = Animator.StringToHash("Attack");
+    public static readonly int SwordSliceAttack_PrepareAttack = Animator.StringToHash("PrepareAttack");
 
     //Cube
     public static readonly int CubeDestroy = Animator.StringToHash("Destroy");
@@ -20,8 +21,6 @@ public class AnimationConstants
 
 public class GameplayConstants
 {
-    public static readonly float LaserGunDamage = 30f;
-    public static readonly float SwordAttackDamage = 20f;
 }
 
 public class Tags
