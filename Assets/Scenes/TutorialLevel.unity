@@ -1856,6 +1856,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1865315725, guid: e9dbf57a80ba25e4ebae2e24c6eff9e0, type: 3}
+      propertyPath: m_Radius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865315726, guid: e9dbf57a80ba25e4ebae2e24c6eff9e0, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865315726, guid: e9dbf57a80ba25e4ebae2e24c6eff9e0, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5252227734422996443, guid: e9dbf57a80ba25e4ebae2e24c6eff9e0, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1970,6 +1982,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 810241114, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
+      propertyPath: m_weaponActionMap.m_Bindings.Array.data[4].m_Interactions
+      value: Hold(duration=0.25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 810241115, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.3884388
+      objectReference: {fileID: 0}
+    - target: {fileID: 810241115, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
+      propertyPath: m_Size.y
+      value: 5.3217525
+      objectReference: {fileID: 0}
+    - target: {fileID: 810241115, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
+      propertyPath: m_Center.x
+      value: 0.004980758
+      objectReference: {fileID: 0}
+    - target: {fileID: 810241115, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
+      propertyPath: m_Center.y
+      value: 0.2600121
+      objectReference: {fileID: 0}
+    - target: {fileID: 810241115, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0021390251
+      objectReference: {fileID: 0}
     - target: {fileID: 2332457739368969669, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
       propertyPath: m_healthBar
       value: 

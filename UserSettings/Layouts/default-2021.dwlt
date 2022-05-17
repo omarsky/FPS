@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Hierarchy
   m_RootView: {fileID: 5}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 18
+  controlID: 21
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -104,7 +104,7 @@ MonoBehaviour:
   - {fileID: 11}
   - {fileID: 12}
   m_Selected: 1
-  m_LastSelected: 1
+  m_LastSelected: 2
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 93
+  controlID: 113
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -221,8 +221,8 @@ MonoBehaviour:
     y: 0
     width: 305.59998
     height: 730.8
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -286,8 +286,8 @@ MonoBehaviour:
     m_SaveData: []
   m_ActionMapsTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 14060aba
-    m_LastClickedID: -1173748204
+    m_SelectedIDs: 
+    m_LastClickedID: 0
     m_ExpandedIDs: 00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -304,13 +304,13 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 0
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 4}
     m_SearchString: 
   m_ActionsTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7165cad2
-    m_LastClickedID: -758487695
-    m_ExpandedIDs: 7eabcba414060abab4e664db68d5bd27415e732a20f3c5605649cc6e
+    m_SelectedIDs: a9ea950fe98862dd23ac0d4e
+    m_LastClickedID: 1309518883
+    m_ExpandedIDs: 14060abae5002809dc29161b68d5bd27dc27df29415e732a54d4905520f3c5605649cc6e
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -335,7 +335,7 @@ MonoBehaviour:
         selectedIndex: 5
         scroll: {x: 0, y: 0}
       - itemId: 82801685
-        selectedIndex: 7
+        selectedIndex: 5
         scroll: {x: 0, y: 0}
       - itemId: 496275792
         selectedIndex: -1
@@ -350,6 +350,9 @@ MonoBehaviour:
         selectedIndex: -1
         scroll: {x: 0, y: 0}
       - itemId: 1081013944
+        selectedIndex: -1
+        scroll: {x: 0, y: 0}
+      - itemId: -491560259
         selectedIndex: -1
         scroll: {x: 0, y: 0}
     m_ManualPathEditMode: 0
@@ -368,18 +371,6 @@ MonoBehaviour:
       \"id\": \"313cacb6-2f08-4c77-9925-c47818ec1904\",\n                    \"expectedControlType\":
       \"Vector2\",\n                    \"processors\": \"\",\n                   
       \"interactions\": \"\",\n                    \"initialStateCheck\": true\n               
-      },\n                {\n                    \"name\": \"SwordSlicePrepare\",\n                   
-      \"type\": \"Button\",\n                    \"id\": \"a75b654d-2bb0-4936-a013-d6ea23f670a0\",\n                   
-      \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
-      \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
-      },\n                {\n                    \"name\": \"CancelSwordSlice\",\n                   
-      \"type\": \"Button\",\n                    \"id\": \"2dcca077-c51b-48a4-8af7-769bb481ac78\",\n                   
-      \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
-      \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
-      },\n                {\n                    \"name\": \"SwordSlice\",\n                   
-      \"type\": \"Button\",\n                    \"id\": \"b7609caf-b8bc-4b4b-a279-95f505bbdad2\",\n                   
-      \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
-      \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
       }\n            ],\n            \"bindings\": [\n                {\n                   
       \"name\": \"2D Vector\",\n                    \"id\": \"83c62e8b-0363-404d-adfe-95ca419a0a04\",\n                   
       \"path\": \"2DVector\",\n                    \"interactions\": \"\",\n                   
@@ -410,31 +401,6 @@ MonoBehaviour:
       \"path\": \"<Mouse>/delta\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"Rotation\",\n                    \"isComposite\": false,\n                   
-      \"isPartOfComposite\": false\n                },\n                {\n                   
-      \"name\": \"\",\n                    \"id\": \"f1308ee7-d4ec-4ade-a945-8220d37aa649\",\n                   
-      \"path\": \"<Mouse>/leftButton\",\n                    \"interactions\": \"Hold(duration=0.15)\",\n                   
-      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
-      \"action\": \"SwordSlicePrepare\",\n                    \"isComposite\": false,\n                   
-      \"isPartOfComposite\": false\n                },\n                {\n                   
-      \"name\": \"One Modifier\",\n                    \"id\": \"c0d51d7f-fd4f-4c8f-9b50-73a5c365940e\",\n                   
-      \"path\": \"OneModifier\",\n                    \"interactions\": \"\",\n                   
-      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
-      \"action\": \"CancelSwordSlice\",\n                    \"isComposite\": true,\n                   
-      \"isPartOfComposite\": false\n                },\n                {\n                   
-      \"name\": \"modifier\",\n                    \"id\": \"70965205-4afb-4a63-a4f5-aebed98e2c30\",\n                   
-      \"path\": \"<Mouse>/leftButton\",\n                    \"interactions\": \"\",\n                   
-      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
-      \"action\": \"CancelSwordSlice\",\n                    \"isComposite\": false,\n                   
-      \"isPartOfComposite\": true\n                },\n                {\n                   
-      \"name\": \"binding\",\n                    \"id\": \"2d217972-644a-4516-960d-c3294f6304ce\",\n                   
-      \"path\": \"<Mouse>/rightButton\",\n                    \"interactions\": \"\",\n                   
-      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
-      \"action\": \"CancelSwordSlice\",\n                    \"isComposite\": false,\n                   
-      \"isPartOfComposite\": true\n                },\n                {\n                   
-      \"name\": \"\",\n                    \"id\": \"4eeba46b-9bd1-41bd-9a61-cfea5bbac4a6\",\n                   
-      \"path\": \"<Mouse>/leftButton\",\n                    \"interactions\": \"Press(behavior=1)\",\n                   
-      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
-      \"action\": \"SwordSlice\",\n                    \"isComposite\": false,\n                   
       \"isPartOfComposite\": false\n                }\n            ]\n        }\n   
       ],\n    \"controlSchemes\": []\n}"
     m_IsDirty: 0
@@ -859,9 +825,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 52.29453, y: 1.6449306, z: 30.902998}
+    m_Target: {x: 50.415447, y: 1.9590933, z: 35.070446}
     speed: 2
-    m_Value: {x: 52.29453, y: 1.6449306, z: 30.902998}
+    m_Value: {x: 50.415447, y: 1.9590933, z: 35.070446}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -908,13 +874,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.15639716, y: -0.6695997, z: 0.14741984, w: -0.71103656}
+    m_Target: {x: -0.15892288, y: -0.011254927, z: 0.0019143644, w: -0.9872912}
     speed: 2
-    m_Value: {x: -0.15638705, y: -0.6695564, z: 0.1474103, w: -0.71099055}
+    m_Value: {x: -0.1589125, y: -0.011254192, z: 0.0019142394, w: -0.9872267}
   m_Size:
-    m_Target: 4.0752983
+    m_Target: 4.986752
     speed: 2
-    m_Value: 4.0752983
+    m_Value: 4.986752
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1064,9 +1030,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 04f9ffff
-      m_LastClickedID: -1788
-      m_ExpandedIDs: 0cf9ffff10f9ffff14f9ffff24f9ffff28f9ffff2cf9ffff3af9ffff40f9ffff56f9ffff32fbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 0ef9ffff12f9ffff16f9ffff26f9ffff2af9ffff2ef9ffff40f9ffff56f9ffff32fbfffff8660000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1131,22 +1097,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 62
   m_LastFolders:
-  - Assets
+  - Assets/Scripts
   m_LastFoldersGridSize: 62
   m_LastProjectPath: C:\Users\Administrator\UNITY PROJECTS\FPSS
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 5c6c0000
-    m_LastClickedID: 27740
-    m_ExpandedIDs: 000000005c6c00005e6c0000606c0000626c0000646c0000666c0000686c00006a6c00006c6c000000ca9a3b
+    scrollPos: {x: 0, y: 56.600006}
+    m_SelectedIDs: 966c0000
+    m_LastClickedID: 27798
+    m_ExpandedIDs: 00000000726c0000746c0000766c0000786c00007a6c00007c6c00007e6c0000806c0000826c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1174,7 +1140,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005c6c00005e6c0000606c0000626c0000646c0000666c0000686c00006a6c00006c6c0000
+    m_ExpandedIDs: 00000000726c0000746c0000766c0000786c00007a6c00007c6c00007e6c0000806c0000826c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
