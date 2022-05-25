@@ -3,7 +3,27 @@ guid: 07193a79c2d92a144a2dc8805b5fac65
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blade
+    second: {fileID: 2100000, guid: 274abc24d820a3a46917989e10ccccc3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Engrave
+    second: {fileID: 2100000, guid: ecd1b8a47cc9fb34ca73b29724aa8c21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Guard
+    second: {fileID: 2100000, guid: 239000ce5537b204b86a3b3bf86e6486, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Handle
+    second: {fileID: 2100000, guid: a750551f521dfb64b9beb8de1e4b7daf, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -42,12 +62,12 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -88,7 +108,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.049999997
+    globalScale: 5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

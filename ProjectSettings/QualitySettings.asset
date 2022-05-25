@@ -40,7 +40,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 0bc870f21790cb247a0253927e5eb401, type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Medium
@@ -76,7 +76,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 2ff3cd29cb246124c8f94841eccb98f5, type: 2}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: High
@@ -93,7 +93,7 @@ QualitySettings:
     skinWeights: 2
     textureQuality: 0
     anisotropicTextures: 1
-    antiAliasing: 0
+    antiAliasing: 8
     softParticles: 0
     softVegetation: 1
     realtimeReflectionProbes: 1
@@ -112,20 +112,8 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: e1d7be9ccf37b50428ff00d20a260316, type: 2}
     excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:
-    Android: 1
-    Lumin: 2
-    Nintendo 3DS: 2
-    Nintendo Switch: 2
-    PS4: 2
-    PSP2: 1
     Server: 0
-    Stadia: 2
     Standalone: 2
-    WebGL: 2
-    Windows Store Apps: 2
-    XboxOne: 2
-    iPhone: 1
-    tvOS: 1
