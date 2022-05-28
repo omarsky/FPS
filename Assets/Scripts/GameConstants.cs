@@ -30,3 +30,8 @@ public class Tags
     public static readonly string Enemy = "Enemy";
     public static readonly string DamageDealingObject = "DamageDealingObject";
 }
+
+public class Other
+{
+    public static readonly string MainMenuName = "MainMenu";
+}

@@ -39,16 +39,22 @@ public class SwordScript : WeaponScript
 
     public void OnSwordSliceAttack_Prepare(InputAction.CallbackContext value)
     {
-        m_armAnimator.SetBool(AnimationConstants.SwordSliceAttack_PrepareAttack, true);
-        m_chargeAttackValue = 0f;
-        m_isCharging = true;
+        if (!PauseMenu.m_gameIsPaused)
+        {
+            m_armAnimator.SetBool(AnimationConstants.SwordSliceAttack_PrepareAttack, true);
+            m_chargeAttackValue = 0f;
+            m_isCharging = true;
+        }
     }
 
     public void OnSwordSliceAttack_CancelPreparation(InputAction.CallbackContext value)
     {
-        m_armAnimator.SetBool(AnimationConstants.SwordSliceAttack_PrepareAttack, false);
-        m_chargeAttackValue = 0f;
-        m_isCharging = false;
+        if (!PauseMenu.m_gameIsPaused)
+        {
+            m_armAnimator.SetBool(AnimationConstants.SwordSliceAttack_PrepareAttack, false);
+            m_chargeAttackValue = 0f;
+            m_isCharging = false;
+        }
     }
 
     public void OnSwordSliceAttack(InputAction.CallbackContext value)
