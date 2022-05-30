@@ -12,7 +12,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlayTheGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        LevelLoader.m_instance.LoadNextLevel();
     }
 
     public void QuitTheGame()
