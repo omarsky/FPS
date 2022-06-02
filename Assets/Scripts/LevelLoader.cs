@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelLoader : MonoBehaviour
 {
-    [SerializeField]
-    Animator m_animator;
-    [SerializeField]
-    float m_transitionTime = 1f;
+    [SerializeField] Animator m_crossfadeAnimator;
+    [SerializeField] float m_transitionTime = 1f;
+    [SerializeField] GameObject m_loadingScreen;
+    [SerializeField] Slider m_loadingBar;
 
     public static LevelLoader m_instance { get; private set; }
 
@@ -19,12 +20,35 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(LoadLevelAsync(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+    IEnumerator LoadLevelAsync(int levelIndex)
+    {
+        m_crossfadeAnimator.SetTrigger("Start");
+        yield return new WaitForSeconds(m_transitionTime);
+
+
+        if (m_loadingScreen)
+        {
+            m_loadingScreen.SetActive(true);
+        }
+        AsyncOperation loadOp = SceneManager.LoadSceneAsync(levelIndex);
+
+        while (!loadOp.isDone)
+        {
+            if (m_loadingBar)
+            {
+                m_loadingBar.value = loadOp.progress / 0.9f;
+            }
+            yield return null;
+        }
+
+
+    }
     IEnumerator LoadLevel(int levelIndex)
     {
-        m_animator.SetTrigger("Start");
+        m_crossfadeAnimator.SetTrigger("Start");
 
         yield return new WaitForSeconds(m_transitionTime);
 

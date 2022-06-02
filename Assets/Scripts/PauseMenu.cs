@@ -43,7 +43,7 @@ public class PauseMenu : MonoBehaviour
         m_pauseMenu.SetActive(false);
         foreach (GameObject obj in m_objectsToDisableWhenPaused)
         {
-            obj.SetActive(true);
+            obj.GetComponent<CanvasGroup>().alpha = 1f;
         }
         Time.timeScale = 1f;
         m_gameIsPaused = false;
@@ -55,7 +55,7 @@ public class PauseMenu : MonoBehaviour
         m_pauseMenu.SetActive(true);
         foreach (GameObject obj in m_objectsToDisableWhenPaused)
         {
-            obj.SetActive(false);
+            obj.GetComponent<CanvasGroup>().alpha = 0f;
         }
         Time.timeScale = 0f;
         m_gameIsPaused = true;
