@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class SwordScript : WeaponScript
 {
@@ -9,10 +10,10 @@ public class SwordScript : WeaponScript
     float m_chargeAttackValue = 0f;
 
     [Header("Sword section")]
-    [SerializeField]
-    float m_maxChargeBonus = 10f;
-    [SerializeField]
-    float m_chargeSpeed = 1f;
+    [SerializeField] float m_maxChargeBonus = 10f;
+    [SerializeField] float m_chargeSpeed = 1f;
+    [SerializeField] GameObject m_chargeMeter;
+    Slider m_chargeAttackSlider;
 
     protected override float GetDamageDeal()
     {
@@ -28,12 +29,19 @@ public class SwordScript : WeaponScript
         m_weaponActionMap["SwordSlice"].performed += OnSwordSliceAttack;
     }
 
+    private void Awake()
+    {
+        m_chargeAttackSlider = m_chargeMeter.GetComponent<Slider>();
+        m_chargeAttackSlider.maxValue = m_maxChargeBonus;
+    }
+
     void Update()
     {
         if (m_isCharging)
         {
             m_chargeAttackValue += m_chargeSpeed * Time.deltaTime;
             m_chargeAttackValue = Mathf.Min(m_chargeAttackValue, m_maxChargeBonus);
+            m_chargeAttackSlider.value = m_chargeAttackValue;
         }
     }
 
@@ -44,6 +52,7 @@ public class SwordScript : WeaponScript
             m_armAnimator.SetBool(AnimationConstants.SwordSliceAttack_PrepareAttack, true);
             m_chargeAttackValue = 0f;
             m_isCharging = true;
+            m_chargeMeter.SetActive(true);
         }
     }
 
@@ -54,6 +63,7 @@ public class SwordScript : WeaponScript
             m_armAnimator.SetBool(AnimationConstants.SwordSliceAttack_PrepareAttack, false);
             m_chargeAttackValue = 0f;
             m_isCharging = false;
+            m_chargeMeter.SetActive(false);
         }
     }
 
@@ -64,6 +74,7 @@ public class SwordScript : WeaponScript
             m_armAnimator.SetBool(AnimationConstants.SwordSliceAttack_PrepareAttack, false);
             m_armAnimator.SetTrigger(AnimationConstants.SwordSliceAttackTrigger);
             m_isCharging = false;
+            m_chargeMeter.SetActive(false);
             ArmAnimatorHelper.m_isActionInProgress = true;
         }
     }

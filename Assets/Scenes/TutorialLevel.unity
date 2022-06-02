@@ -873,18 +873,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1627529268, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
   m_PrefabInstance: {fileID: 5702189387385505109}
   m_PrefabAsset: {fileID: 0}
---- !u!225 &614852389
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 614852384}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!1 &702287463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3332,6 +3320,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 810241115, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
+      propertyPath: m_Size.y
+      value: 6.6797194
+      objectReference: {fileID: 0}
+    - target: {fileID: 810241115, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
+      propertyPath: m_Center.x
+      value: 0.00000029050278
+      objectReference: {fileID: 0}
+    - target: {fileID: 810241115, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
+      propertyPath: m_Center.y
+      value: -0.41899213
+      objectReference: {fileID: 0}
+    - target: {fileID: 810241115, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
+      propertyPath: m_Center.z
+      value: 0.002138918
+      objectReference: {fileID: 0}
     - target: {fileID: 4604115166252003128, guid: 07739d7655d3fc748baef10b7415205b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
