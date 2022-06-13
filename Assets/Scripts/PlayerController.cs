@@ -3,71 +3,86 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Timers;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    float m_movementSpeed = 1f;
-    [SerializeField]
-    float m_rotationSpeed = 1f;
+    [SerializeField] float m_movementWalkSpeed = 1f;
+    [SerializeField] float m_movementRunSpeed = 1f;
+    [SerializeField] float m_rotationSpeed = 1f;
+    [SerializeField] float m_jumpHeight = 2f;
+    [SerializeField] float m_gravity = -9.81f;
 
-    CharacterController m_controller;
-    [SerializeField]
-    Transform m_armCamera;
+    bool m_isRunning = false;
+    bool m_isWallRunning = false;
+    bool m_canWallrun = false;
+    bool m_canSetWallrunTimer = false;
+    float m_wallrunTimer = 0f; 
 
-    [SerializeField]
-    GameObject m_bulletSpawn;
-    [SerializeField]
-    GameObject m_throwObjectPrefab; // todo
-
-    [SerializeField]
-    LayerMask m_objectsAffectedByShotsMask;
-
+    Vector3 m_jumpGravitySpeed;
     Vector3 m_currentMove;
     Vector3 m_currentRotation;
+    bool m_scheduleJump;
 
-    [Header("Ground check")]
-    [SerializeField]
-    Transform m_checkGround;
-    [SerializeField]
-    float m_checkGroundRadius = 2f;
-    [SerializeField]
-    float m_gravity = 9.81f;
-    Vector3 m_currentSpeed;
-    bool m_isGrounded;
-    [SerializeField]
-    LayerMask m_groundMask;
+    CharacterController m_controller;
+    [SerializeField] Transform m_armCamera;
+
+    //[SerializeField] GameObject m_throwObjectPrefab; // todo
+
+    /*
+     * possibly needed if I will have firearms
+    */
+    //[SerializeField] LayerMask m_objectsAffectedByShotsMask;
+
 
     void Awake()
     {
         m_controller = GetComponent<CharacterController>();
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag(Tags.WallrunObject) && IsWallrunning())
+        {
+            float angle = Vector3.Angle(hit.normal, hit.moveDirection);
+            if (angle > 80f && angle < 140f)
+            {
+                transform.Rotate(0f, 0f, Vector3.Angle(hit.normal, transform.right) > 90f ? 20f : -20f);
+                if (m_canSetWallrunTimer)
+                {
+                    m_wallrunTimer = 3f;
+                    m_canSetWallrunTimer = false;
+                }
+            }
+            else
+            {
+                m_canWallrun = false;
+            }
+        }
+
+    }
+
     // Update is called once per frame
     void Update()
     {
         UpdateRotation();
-        UpdateMovement();
-        UpdateGravity();
+        Vector3 resultMovement = UpdateMovement();
+        resultMovement += UpdateJumpingAndGravity();
+
+        m_controller.Move(resultMovement);
+
+        if (!IsWallrunning())
+        {
+            transform.Rotate(0f, 0f, 0f);
+        }
+
+        m_wallrunTimer -= Time.deltaTime;
     }
 
-    private void UpdateGravity()
+    private bool IsWallrunning()
     {
-        if (!m_isGrounded)
-        {
-            m_currentSpeed.y -= (m_gravity / 2) * (Time.deltaTime * Time.deltaTime);
-            m_controller.Move(m_currentSpeed);
-        }
-        if (Physics.CheckSphere(m_checkGround.position, m_checkGroundRadius, m_groundMask))
-        {
-            m_isGrounded = true;
-            m_currentSpeed.y = 0;
-        }
-        else
-        {
-            m_isGrounded = false;
-        }
+        CollisionFlags flags = m_controller.collisionFlags;
+        m_isWallRunning = m_canWallrun && !m_controller.isGrounded && (flags & CollisionFlags.Sides) != 0;
+        return m_isWallRunning;
     }
 
     private void UpdateRotation()
@@ -80,12 +95,39 @@ public class PlayerController : MonoBehaviour
         m_armCamera.rotation = camerasRotation;
     }
 
-    private void UpdateMovement()
+    private Vector3 UpdateMovement()
     {
-        Vector3 moveForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized * m_currentMove.y * m_movementSpeed * Time.deltaTime;
-        Vector3 moveSideways = transform.right * m_currentMove.x * m_movementSpeed * Time.deltaTime;
-        m_controller.Move(moveForward);
-        m_controller.Move(moveSideways);
+        float movementSpeed = m_isRunning ? m_movementRunSpeed : m_movementWalkSpeed;
+        Vector3 moveForward = transform.forward * m_currentMove.y * movementSpeed * Time.deltaTime;
+        Vector3 moveSideways = transform.right * m_currentMove.x * movementSpeed * Time.deltaTime;
+        return moveForward + moveSideways;
+    }
+
+    private Vector3 UpdateJumpingAndGravity()
+    {
+        if (m_scheduleJump)
+        {
+            m_jumpGravitySpeed.y = Mathf.Sqrt(m_jumpHeight * -2f * m_gravity);
+            m_canWallrun = true;
+            m_canSetWallrunTimer = true;
+            m_scheduleJump = false;
+        }
+
+        if (m_controller.isGrounded && m_jumpGravitySpeed.y < 0)
+        {
+            m_jumpGravitySpeed.y = -2f;
+        }
+
+        if (!IsWallrunning() || m_wallrunTimer < 0f)
+        {
+            m_jumpGravitySpeed.y += m_gravity * Time.deltaTime;
+        }
+        else
+        {
+            m_jumpGravitySpeed.y = 0f;
+        }
+
+        return m_jumpGravitySpeed * Time.deltaTime;
     }
 
     public void OnMove(InputAction.CallbackContext value)
@@ -93,9 +135,29 @@ public class PlayerController : MonoBehaviour
         m_currentMove = value.ReadValue<Vector2>();
     }
 
+    public void OnRun(InputAction.CallbackContext value)
+    {
+        if (value.phase == InputActionPhase.Performed)
+        {
+            m_isRunning = true;
+        }
+        else
+        {
+            m_isRunning = false;
+        }
+    }
+
     public void OnRotate(InputAction.CallbackContext value)
     {
         m_currentRotation = value.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext value)
+    {
+        if (value.phase == InputActionPhase.Performed && !m_scheduleJump && (m_controller.isGrounded || m_isWallRunning))
+        {
+            m_scheduleJump = true;
+        }
     }
 
     public void OnAttack()
@@ -106,10 +168,5 @@ public class PlayerController : MonoBehaviour
         //{
         //    raycastHit.transform.GetComponent<HealthComponent>()?.ReceiveDamage(GameplayConstants.LaserGunDamage);
         //}
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawSphere(m_checkGround.position, m_checkGroundRadius);
     }
 }

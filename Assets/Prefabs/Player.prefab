@@ -1,67 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &258055720
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 258055721}
-  m_Layer: 0
-  m_Name: GroundChecker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &258055721
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258055720}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.21, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5702189386904606708}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &693165164
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 693165165}
-  m_Layer: 6
-  m_Name: BulletSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &693165165
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 693165164}
-  m_LocalRotation: {x: -0, y: 0.9994768, z: -0.032345045, w: 0}
-  m_LocalPosition: {x: 0.6399994, y: -0.4376366, z: 3.3821259}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4758904739408424770}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1627529268
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +37,7 @@ RectTransform:
   - {fileID: 4115310544864983338}
   - {fileID: 5702189388176810622}
   m_Father: {fileID: 5702189386904606708}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -268,7 +206,6 @@ GameObject:
   - component: {fileID: 5702189386904606710}
   - component: {fileID: 5702189386904606705}
   - component: {fileID: 2332457739368969669}
-  - component: {fileID: 789730002}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -291,7 +228,6 @@ Transform:
   - {fileID: 5702189388045527073}
   - {fileID: 5702189387028531102}
   - {fileID: 4597231862704979521}
-  - {fileID: 258055721}
   - {fileID: 5235582399998198638}
   - {fileID: 1627529272}
   m_Father: {fileID: 0}
@@ -309,20 +245,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1c6d11cae459b4f8e55a4663c007ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_movementSpeed: 10
+  m_movementWalkSpeed: 10
+  m_movementRunSpeed: 20
   m_rotationSpeed: 30
+  m_jumpHeight: 3
+  m_gravity: -9.81
   m_armCamera: {fileID: 5702189387028531102}
-  m_bulletSpawn: {fileID: 693165164}
-  m_throwObjectPrefab: {fileID: 0}
-  m_objectsAffectedByShotsMask:
-    serializedVersion: 2
-    m_Bits: 243
-  m_checkGround: {fileID: 258055721}
-  m_checkGroundRadius: 0.33
-  m_gravity: 9.81
-  m_groundMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &5702189386904606710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +308,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 313cacb6-2f08-4c77-9925-c47818ec1904
     m_ActionName: Movement/Rotation[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5702189386904606711}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9f252652-a43a-4e0c-8523-47094dd541fc
+    m_ActionName: PlayerControl/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5702189386904606711}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnRun
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f7b2b4dd-9609-4d15-a9b2-d51f3b8f9817
+    m_ActionName: PlayerControl/Run[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControl
@@ -401,7 +361,7 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0.6
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2332457739368969669
 MonoBehaviour:
@@ -427,20 +387,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
---- !u!136 &789730002
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702189386904606665}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5702189387028531103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,7 +1186,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 848e57fd9ae67c445b43efe6cf94ae04, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 848e57fd9ae67c445b43efe6cf94ae04, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1418,8 +1364,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.26079434, y: 4.74532, z: 0.08423869}
-  m_Center: {x: 0.0000001729665, y: 0.548213, z: 0.0021389283}
+  m_Size: {x: 0.26079434, y: 6.6797194, z: 0.08423869}
+  m_Center: {x: 0.00000029050278, y: -0.41899213, z: 0.002138918}
 --- !u!114 &810241114
 MonoBehaviour:
   m_ObjectHideFlags: 0

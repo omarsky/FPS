@@ -37,6 +37,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""f7b2b4dd-9609-4d15-a9b2-d51f3b8f9817"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Rotation"",
                     ""type"": ""Value"",
                     ""id"": ""313cacb6-2f08-4c77-9925-c47818ec1904"",
@@ -44,6 +53,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f252652-a43a-4e0c-8523-47094dd541fc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ffddd5f5-b839-4863-b876-a88e9f4f1647"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44e9e3f8-5bbc-480b-a72e-bbf947c9f968"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": ""Hold(duration=0.1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -121,7 +161,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // PlayerControl
         m_PlayerControl = asset.FindActionMap("PlayerControl", throwIfNotFound: true);
         m_PlayerControl_WASD = m_PlayerControl.FindAction("WASD", throwIfNotFound: true);
+        m_PlayerControl_Run = m_PlayerControl.FindAction("Run", throwIfNotFound: true);
         m_PlayerControl_Rotation = m_PlayerControl.FindAction("Rotation", throwIfNotFound: true);
+        m_PlayerControl_Jump = m_PlayerControl.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -182,13 +224,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerControl;
     private IPlayerControlActions m_PlayerControlActionsCallbackInterface;
     private readonly InputAction m_PlayerControl_WASD;
+    private readonly InputAction m_PlayerControl_Run;
     private readonly InputAction m_PlayerControl_Rotation;
+    private readonly InputAction m_PlayerControl_Jump;
     public struct PlayerControlActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerControlActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @WASD => m_Wrapper.m_PlayerControl_WASD;
+        public InputAction @Run => m_Wrapper.m_PlayerControl_Run;
         public InputAction @Rotation => m_Wrapper.m_PlayerControl_Rotation;
+        public InputAction @Jump => m_Wrapper.m_PlayerControl_Jump;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControl; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -201,9 +247,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @WASD.started -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnWASD;
                 @WASD.performed -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnWASD;
                 @WASD.canceled -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnWASD;
+                @Run.started -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnRun;
+                @Run.performed -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnRun;
+                @Run.canceled -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnRun;
                 @Rotation.started -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnRotation;
                 @Rotation.performed -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnRotation;
                 @Rotation.canceled -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnRotation;
+                @Jump.started -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerControlActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_PlayerControlActionsCallbackInterface = instance;
             if (instance != null)
@@ -211,9 +263,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @WASD.started += instance.OnWASD;
                 @WASD.performed += instance.OnWASD;
                 @WASD.canceled += instance.OnWASD;
+                @Run.started += instance.OnRun;
+                @Run.performed += instance.OnRun;
+                @Run.canceled += instance.OnRun;
                 @Rotation.started += instance.OnRotation;
                 @Rotation.performed += instance.OnRotation;
                 @Rotation.canceled += instance.OnRotation;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -221,6 +279,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IPlayerControlActions
     {
         void OnWASD(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
         void OnRotation(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }
