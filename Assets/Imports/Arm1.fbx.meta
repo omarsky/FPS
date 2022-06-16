@@ -83,8 +83,8 @@ ModelImporter:
       name: idle
       takeName: Armature|ArmatureAction
       internalID: 0
-      firstFrame: 0
-      lastFrame: 0
+      firstFrame: 81
+      lastFrame: 300
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -147,8 +147,8 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
