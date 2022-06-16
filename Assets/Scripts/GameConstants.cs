@@ -7,6 +7,7 @@ public class AnimationConstants
     //Player
     public static readonly int SwordSliceAttackTrigger = Animator.StringToHash("Attack");
     public static readonly int SwordSliceAttack_PrepareAttack = Animator.StringToHash("PrepareAttack");
+    public static readonly int PlayerRun = Animator.StringToHash("Run");
 
     //Cube
     public static readonly int CubeDestroy = Animator.StringToHash("Destroy");

@@ -140,6 +140,7 @@ public class PlayerController : MonoBehaviour
         if (value.phase == InputActionPhase.Performed)
         {
             m_isRunning = true;
+
         }
         else
         {

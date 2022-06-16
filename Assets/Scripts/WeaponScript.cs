@@ -5,13 +5,10 @@ using UnityEngine.InputSystem;
 
 public class WeaponScript : MonoBehaviour
 {
-    [SerializeField]
-    protected Animator m_armAnimator;
-    [SerializeField]
-    float m_damageDeal;
+    [SerializeField] protected Animator m_armAnimator;
+    [SerializeField] float m_damageDeal;
 
-    [SerializeField]
-    protected InputActionMap m_weaponActionMap;
+    [SerializeField] protected InputActionMap m_weaponActionMap;
 
     protected virtual float GetDamageDeal()
     {
