@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieController : EnemyController
+public sealed class ZombieController : EnemyController
 {
     float m_timer = 0f;
 
@@ -38,5 +38,12 @@ public class ZombieController : EnemyController
         base.OnHealthEnded();
 
         m_animator.SetTrigger(AnimationConstants.ZombieFallback);
+    }
+
+    protected override void OnHealthChanged(float healthBefore, float newHealth)
+    {
+        base.OnHealthChanged(healthBefore, newHealth);
+
+        m_animator.SetTrigger(AnimationConstants.ZombieGetDamage);
     }
 }

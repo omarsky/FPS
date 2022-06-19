@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class HealthComponent : MonoBehaviour
 {
+    public delegate void OnHealthChanged(float previousHealth, float newHealth);
+    public event OnHealthChanged HealthChangedEvent;
     public delegate void OnHealthEnded();
-    public event OnHealthEnded HealthEndedNotificationEvent;
+    public event OnHealthEnded HealthEndedEvent;
 
     [SerializeField]
     float m_maxHealth = 100f;
@@ -39,12 +41,15 @@ public class HealthComponent : MonoBehaviour
     public void ReceiveDamage(float damageAmount)
     {
         m_healthBar.SetActive(true);
+        float healthBeforeDamage = m_health;
         m_health -= damageAmount;
         m_healthBarSlider.value = m_health / m_maxHealth;
 
+        HealthChangedEvent?.Invoke(healthBeforeDamage, m_health);
+
         if (m_health <= 0)
         {
-            HealthEndedNotificationEvent?.Invoke();
+            HealthEndedEvent?.Invoke();
         }
 
         Debug.LogFormat("{1}: Received damage: {0}", damageAmount, gameObject.ToString());
@@ -59,15 +64,22 @@ public class HealthComponent : MonoBehaviour
         GameObject.Destroy(this.gameObject);
     }
 
-    public void RegisterHealthEvent(OnHealthEnded ev)
+    public void RegisterHealthEndedEvent(OnHealthEnded ev)
     {
-        HealthEndedNotificationEvent += ev;
+        HealthEndedEvent += ev;
     }
-    public void UnregisterHealthEvent(OnHealthEnded ev)
+    public void UnregisterHealthEndedEvent(OnHealthEnded ev)
     {
-        HealthEndedNotificationEvent -= ev;
+        HealthEndedEvent -= ev;
     }
-
+    public void RegisterHealthChangedEvent(OnHealthChanged ev)
+    {
+        HealthChangedEvent += ev;
+    }
+    public void UnregisterHealthChangedEvent(OnHealthChanged ev)
+    {
+        HealthChangedEvent -= ev;
+    }
     private void OnDrawGizmos()
     {
         m_debugSelected = false;

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public abstract class EnemyController : MonoBehaviour
 {
     protected Animator m_animator;
 
@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         m_animator = GetComponent<Animator>();
-        GetComponent<HealthComponent>()?.RegisterHealthEvent(OnHealthEnded);
+        RegisterHealthEvents();
     }
 
     void Update()
@@ -96,12 +96,27 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void OnHealthEnded()
     {
-        GetComponent<HealthComponent>()?.UnregisterHealthEvent(OnHealthEnded);
+        UnregisterHealthEvents();
     }
+    protected virtual void OnHealthChanged(float healthBefore, float newHealth)
+    {
+    }
+
+    private void RegisterHealthEvents()
+    {
+        GetComponent<HealthComponent>()?.RegisterHealthEndedEvent(OnHealthEnded);
+        GetComponent<HealthComponent>()?.RegisterHealthChangedEvent(OnHealthChanged);
+    }
+
+    private void UnregisterHealthEvents()
+    {
+        GetComponent<HealthComponent>()?.UnregisterHealthEndedEvent(OnHealthEnded);
+        GetComponent<HealthComponent>()?.UnregisterHealthChangedEvent(OnHealthChanged);
+    }
+
 
     protected virtual void UpdateRoaming()
     {
-
     }
 
 
@@ -109,7 +124,7 @@ public class EnemyController : MonoBehaviour
     {
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(m_damageDealingObj.position, m_damageObjectRadius);
     }

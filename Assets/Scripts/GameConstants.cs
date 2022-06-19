@@ -18,6 +18,7 @@ public class AnimationConstants
     public static readonly int ZombieWalking = Animator.StringToHash("IsWalking");
     public static readonly int ZombieRunning = Animator.StringToHash("IsRunning");
     public static readonly int ZombieRoaming = Animator.StringToHash("IsRoaming");
+    public static readonly int ZombieGetDamage = Animator.StringToHash("GetDamage");
 }
 
 public class GameplayConstants
